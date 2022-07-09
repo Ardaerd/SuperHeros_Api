@@ -52,9 +52,23 @@ namespace SuperHero_Api.Controllers
             return Ok(heroes);
         }
 
+        [HttpPut]
+        public async Task<ActionResult<List<SuperHero>>> UpdateHero(SuperHero request, int id)
+        {
+            var hero = heroes.Find(h => h.id == id);
+
+            if (hero == null)
+                return BadRequest("Hero not found!");
+
+            hero.Name = request.Name;
+            hero.FirstName = request.FirstName;
+            hero.LastName = request.LastName;
+            hero.Place = request.Place;
+
+            return Ok(heroes);
+        }
 
 
-      
 
     }
 }
